@@ -1,0 +1,59 @@
+/* dimensions for a typical envelope shape */
+:root {
+    --letter-width: 300px;
+    --letter-height: 200px;
+    --flap-height: 100px;
+    /* half of the letter height */
+    --transition-duration: 0.5s;
+}
+
+.letter-container {
+    position: relative;
+    width: var(--letter-width);
+    height: var(--letter-height);
+    background-color: #f0f0f0;
+    margin: 20px auto;
+    /* Body of the envelope */
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* Important to contain elements */
+}
+
+/* The flap that closes the letter */
+.letter-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--flap-height);
+    /* Half the height */
+    background-color: #e0e0e0;
+    /* Flap color */
+
+    /* Create the V-shape using a CSS border trick */
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+
+    /* Center the text and button on the flap */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Initial state is closed (no rotation) */
+    transform-origin: top center;
+    transform: rotateX(0deg);
+    transition: transform var(--transition-duration) ease-in-out;
+    z-index: 10;
+    /* Ensure it is on top of the body */
+}
+
+/* ** THE OPENING ANIMATION ** When the 'open' class is applied to the container,
+  rotate the flap back 180 degrees on the X-axis.
+*/
+.letter-container.open .letter-flap {
+    /* Rotate it 180 degrees around the top center axis to "open" it */
+    transform: rotateX(180deg);
+    /* Optional: You can add an opacity change if the backside looks different */
+    opacity: 0.5;
+}

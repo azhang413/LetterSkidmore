@@ -1,0 +1,125 @@
+.letter-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 20px;
+    font-family: 'Georgia', serif;
+}
+
+.card-display {
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+.cue-card {
+    background-color: #fff;
+    width: 600px;
+    min-height: 400px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    position: relative;
+    border: 1px solid #e0e0e0;
+    transform-origin: bottom center;
+}
+
+.cue-card.exit-left {
+    transform: translateX(-100vw) rotate(-20deg);
+    opacity: 0;
+}
+
+.cue-card.exit-right {
+    transform: translateX(100vw) rotate(20deg);
+    opacity: 0;
+}
+
+.cue-card.enter-from-right {
+    animation: slideInRight 0.5s ease forwards;
+}
+
+.cue-card.enter-from-left {
+    animation: slideInLeft 0.5s ease forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100vw) rotate(20deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0) rotate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100vw) rotate(-20deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0) rotate(0);
+        opacity: 1;
+    }
+}
+
+/* Lines on the cue card */
+.cue-card::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #ff9999;
+    /* Red line at top */
+}
+
+.cue-card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #333;
+    margin-top: 20px;
+    /* Space for the red line */
+    white-space: pre-wrap;
+}
+
+.card-footer {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 20px;
+}
+
+.controls {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.nav-button:hover {
+    background-color: #555;
+}
+
+.nav-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

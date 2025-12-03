@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Letter.css'
 import cardsData from './cards.json'
+import oscarImage from './assets/oscar.jpg'
 
 const cards = Object.values(cardsData);
 
@@ -28,17 +29,17 @@ function Letter() {
     }
   }
 
-  // Determine enter class based on exit class (or lack thereof) isn't strictly necessary 
-  // if we just want the new card to appear or slide in.
-  // But to make it smooth, let's just rely on the key change to reset state, 
-  // and maybe add a default enter animation if we wanted.
-  // For now, the exit animation is the key request.
-
   return (
     <div className="letter-container-wrapper">
       <div className="card-display">
         <div className={`cue-card ${exitClass || ''}`}>
           <p>{cards[index]}</p>
+          {index === cards.length - 1 && (
+            <div className="oscar-container">
+              <span className="oscar-text">And the Oscar goes to... Professor Skidmore!</span>
+              <img src={oscarImage} alt="Oscar Award" className="oscar-image" />
+            </div>
+          )}
           <div className="card-footer">
             {index + 1} / {cards.length}
           </div>

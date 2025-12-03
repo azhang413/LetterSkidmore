@@ -123,3 +123,24 @@
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+.oscar-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 20px auto;
+    gap: 15px;
+}
+
+.oscar-text {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.oscar-image {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+}
